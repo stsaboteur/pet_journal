@@ -1,5 +1,5 @@
 
-import { Pet } from './types';
+import { Pet } from './types.ts';
 
 // Explicitly type the array elements to match the Pet interface, using 'as const' for literal types
 export const PETS_DATA: Pet[] = ([

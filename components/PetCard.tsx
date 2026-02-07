@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Pet } from '../types';
-import { CircularProgress } from './CircularProgress';
-import { MAX_VACCINATION_CYCLE } from '../constants';
+import { Pet } from '../types.ts';
+import { CircularProgress } from './CircularProgress.tsx';
+import { MAX_VACCINATION_CYCLE } from '../constants.tsx';
 import { Cat } from 'lucide-react';
 
 interface PetCardProps {
@@ -39,7 +39,11 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
 
         {/* Right Block - Vaccination Countdown */}
         <div className="shrink-0 pl-2">
-          <CircularProgress value={pet.daysToVaccination} maxValue={MAX_VACCINATION_CYCLE} />
+          <CircularProgress 
+            id={`progress-${pet.id}`} 
+            value={pet.daysToVaccination} 
+            maxValue={MAX_VACCINATION_CYCLE} 
+          />
         </div>
       </div>
     </div>

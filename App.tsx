@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { MoreVertical, Plus } from 'lucide-react';
-import { PETS_DATA } from './constants';
-import { PetCard } from './components/PetCard';
+import { PETS_DATA } from './constants.tsx';
+import { PetCard } from './components/PetCard.tsx';
 
 const App: React.FC = () => {
   return (
