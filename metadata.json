@@ -1,0 +1,5 @@
+{
+  "name": "Pet Journal",
+  "description": "A sleek, dark-themed mobile-first diary for tracking pet observations, weight, and vaccination schedules.",
+  "requestFramePermissions": []
+}
