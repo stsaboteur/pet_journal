@@ -1,14 +1,20 @@
 
 import { Pet } from './types.ts';
 
-// Explicitly type the array elements to match the Pet interface, using 'as const' for literal types
-export const PETS_DATA: Pet[] = ([
+const today = new Date();
+const addDays = (days: number) => {
+  const d = new Date();
+  d.setDate(today.getDate() + days);
+  return d.toISOString().split('T')[0];
+};
+
+export const INITIAL_PETS: Pet[] = [
   {
     id: '1',
     name: 'Cookie',
     ageMonths: 11,
     weightKg: 3.5,
-    daysToVaccination: 200,
+    nextVaccinationDate: addDays(200),
     iconType: 'cat' as const,
   },
   {
@@ -16,7 +22,7 @@ export const PETS_DATA: Pet[] = ([
     name: 'Karas',
     ageMonths: 11,
     weightKg: 4.5,
-    daysToVaccination: 200,
+    nextVaccinationDate: addDays(200),
     iconType: 'cat' as const,
   },
   {
@@ -24,9 +30,9 @@ export const PETS_DATA: Pet[] = ([
     name: 'Kiska',
     ageMonths: 25,
     weightKg: 2.5,
-    daysToVaccination: 300,
+    nextVaccinationDate: addDays(300),
     iconType: 'cat' as const,
   },
-] as Pet[]).sort((a, b) => a.name.localeCompare(b.name));
+].sort((a, b) => a.name.localeCompare(b.name));
 
-export const MAX_VACCINATION_CYCLE = 365; // Assuming a standard year cycle for percentage calculation
+export const MAX_VACCINATION_CYCLE = 365;

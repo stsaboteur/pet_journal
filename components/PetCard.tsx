@@ -7,11 +7,22 @@ import { Cat } from 'lucide-react';
 
 interface PetCardProps {
   pet: Pet;
+  onClick: () => void;
 }
 
-export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
+export const PetCard: React.FC<PetCardProps> = ({ pet, onClick }) => {
+  // Calculate days remaining dynamically
+  const target = new Date(pet.nextVaccinationDate);
+  const now = new Date();
+  const diffTime = target.getTime() - now.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const displayDays = Math.max(0, diffDays);
+
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] p-4 shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+    <div 
+      onClick={onClick}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] p-4 shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ring-1 ring-white/5"
+    >
       <div className="flex items-center justify-between gap-4">
         
         {/* Left Block - Icon */}
@@ -41,7 +52,7 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
         <div className="shrink-0 pl-2">
           <CircularProgress 
             id={`progress-${pet.id}`} 
-            value={pet.daysToVaccination} 
+            value={displayDays} 
             maxValue={MAX_VACCINATION_CYCLE} 
           />
         </div>
